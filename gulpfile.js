@@ -15,12 +15,16 @@ elixir(function(mix) {
     mix.styles([
         "ui.css",
         "main.css",
-        "style.css"
+        "style.css",
+        "jquery-ui.css",
+        "jquery-ui.theme.css"
     ]);
 
     mix.scripts([
         "jquery-2.1.4.js",
-        "bootstrap.js"
+        "bootstrap.js",
+        "jquery-ui.js"
+
     ]);
 
     mix.version(["css/all.css", "js/all.js"]);
