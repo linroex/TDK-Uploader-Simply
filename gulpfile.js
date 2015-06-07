@@ -14,7 +14,8 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.styles([
         "ui.css",
-        "main.css"
+        "main.css",
+        "style.css"
     ]);
 
     mix.scripts([
