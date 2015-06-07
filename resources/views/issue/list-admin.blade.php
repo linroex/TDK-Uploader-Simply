@@ -16,7 +16,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table-striped table table-bordered">
+                            <table class="table-striped table">
                                 <thead>
                                     <tr>
                                         <td class="hidden"></td>   
@@ -37,7 +37,7 @@
                                         <td>2015/5/1</td>
                                         <td>2015/5/3</td>
                                         <td>10</td>
-                                        <td class="text-center"><a href="" class="btn btn-primary">編輯</a></td>
+                                        <td class="text-center"><a href="" class="btn btn-primary">檢視</a></td>
                                     </tr>
                                     @endfor
                                 </tbody>
