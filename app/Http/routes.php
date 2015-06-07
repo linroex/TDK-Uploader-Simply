@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function() {
-    return view("issue.list-admin");
+    return view("issue.list-user");
 });
