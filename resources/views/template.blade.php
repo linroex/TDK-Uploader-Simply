@@ -8,7 +8,11 @@
     @include('components.nav')
 
     <div class="view-container">
-        
+        <section id="content">
+            <section class="page">
+                
+            </section>
+        </section>
     </div>
     {{-- View container end --}}
 </body>
