@@ -25,9 +25,9 @@ elixir(function(mix) {
     mix.version(["css/all.css", "js/all.js"]);
 
     mix.copy("resources/assets/bower_components", "public/bower_components");
-    mix.copy("resources/assets/fonts", "public/fonts");
-    mix.copy("resources/assets/images", "public/images");
-    mix.copy("resources/assets/css/img", "public/css/img/");
-    mix.copy("resources/assets/css/ui/images", "public/css/ui/images");
+    mix.copy("resources/assets/fonts", "public/build/fonts");
+    mix.copy("resources/assets/images", "public/build/images");
+    mix.copy("resources/assets/css/img", "public/build/css/img");
+    mix.copy("resources/assets/css/ui/images", "public/build/css/ui/images");
 
 });
