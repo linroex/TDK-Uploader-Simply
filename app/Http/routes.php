@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function() {
-    return view("issue.list-user");
+    return view("issue.upload");
 });
