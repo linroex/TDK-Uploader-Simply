@@ -30,4 +30,41 @@ class UserController extends Controller {
 		Session::flush();
 		return redirect('login');
 	}
+
+	public function batchAddUser(Request $request) {
+
+		$data = explode("\n", $request->get('data'));
+		foreach($data as $row) {
+			$columns = explode(",", $row);
+
+			// $this->validate([
+			// 	'email' => $columns[9],
+			// 	'team_name' => $columns[1],
+			// 	'leader_name' => $columns[3],
+			// 	'mobile' => $columns[8],
+			// 	'school' => $columns[5],
+			// ], [
+			// 	'email' => 'required|email|exists:users,email',
+			// 	'team_name' => 'required',
+			// 	'leader_name' => 'required',
+			// 	'mobile' => 'required|digits:10',
+			// 	'school' => 'required',
+			// ]);
+			$password = str_random(16);
+
+			User::create([
+				'email' => trim($columns[9]),
+				'password' => Hash::make($password),
+				'team_name' => trim($columns[1]),
+				'leader_name' => trim($columns[3]),
+				'mobile' => trim($columns[8]),
+				'school' => trim($columns[5]),
+				'type' => 'user'
+			]);
+			
+			echo "$password<br/>";
+		}
+
+		
+	}
 }

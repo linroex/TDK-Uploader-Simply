@@ -31,6 +31,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'checkAdmin'], function() {
 
     Route::group(['prefix' => '/user'], function() {
         Route::get('/batch', 'ViewController@showBatchAddUserPage');
+        Route::post('/batch', 'UserController@batchAddUser');
     });
 });
 

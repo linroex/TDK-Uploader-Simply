@@ -15,7 +15,9 @@
                         <strong>批次新增用戶</strong>
                     </div>
                     <div class="panel-body">
-                        <form action="{{}}" method="post">
+                        @include('components.notifier')
+                        <form action="{{url('/admin/user/batch')}}" method="post">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <textarea name="data" class="form-control" rows="20"></textarea>
                             </div>
