@@ -22,7 +22,9 @@
                         <strong>新增任務</strong>
                     </div>
                     <div class="panel-body">
-                        <form action="" class="form-horizontal">
+                        @include('components.notifier')
+                        <form action="{{url('admin/issue/add')}}" method="post" class="form-horizontal">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label for="issue-name" class="col-sm-2">任務名稱</label>
                                 <div class="col-sm-10">

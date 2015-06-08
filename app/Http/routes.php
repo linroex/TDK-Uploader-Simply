@@ -27,6 +27,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'checkAdmin'], function() {
         Route::get('/add', 'ViewController@showIssueAddAdminPage');
         Route::get('/list', 'ViewController@showIssueListAdminPage');
         Route::get('/{id}', 'ViewController@showIssueDetailAdminPage');
+
+        Route::post('/add', 'IssueController@addIssue');
     });
 
     Route::group(['prefix' => '/user'], function() {
