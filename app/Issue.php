@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model {
-    protected $table = 'users';
+class Issue extends Model {
+    protected $table = 'issues';
     protected $guarded = ['id'];
 
 }
