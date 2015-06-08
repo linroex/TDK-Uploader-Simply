@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use Session;
+use DB;
 
 class ViewController extends Controller {
 	public function showIndex() {
@@ -58,8 +59,16 @@ class ViewController extends Controller {
 	}
 
 	public function showIssueListUserPage() {
+		$count = Upload::where('user_id', '=', Session::get('user')->id)->groupBy('issue_id')->get(array('issue_id', DB::raw('count(*) as count')))->toArray();
+		
+		$issues = Issue::all()->toArray();
+		$i = 0;
+		for($i = 0; $i < count($issues); $i++) {
+			$issues[$i]['count'] = $count[$i]['count'];
+		}
+		
 		return view('issue.list-user')->with([
-			'issues' => Issue::all()
+			'issues' => $issues
 		]);
 	}
 
