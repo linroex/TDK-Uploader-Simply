@@ -10,13 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-use App\User;
 
 Route::get('/test', function() {
 
 });
 
 Route::get('/login', 'ViewController@showLoginPage');
+Route::post('/login', 'UserController@login');
 
 Route::group(['prefix' => '/admin'], function() {
     Route::group(['prefix' => '/issue'], function() {
