@@ -12,32 +12,32 @@
             <section class="page">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong>檢視任務：測試</strong>
+                        <strong>檢視任務：{{$issue->name}}</strong>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 <h3>任務資訊</h3>
                                 <table class="table">
                                     <tr>
-                                        <td>名稱</td>
-                                        <td>測試</td>
+                                        <td class="col-sm-2">名稱</td>
+                                        <td>{{$issue->name}}</td>
                                     </tr>
                                     <tr>
                                         <td>說明</td>
-                                        <td>測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</td>
+                                        <td>{{$issue->content}}</td>
                                     </tr>
                                     <tr>
                                         <td>截止日期</td>
-                                        <td>2015/5/4</td>
+                                        <td>{{$issue->end_date}}</td>
                                     </tr>
                                     <tr>
                                         <td>已上傳使用者數</td>
-                                        <td>10</td>
+                                        <td>{{$issue->upload_count}}</td>
                                     </tr>
                                     <tr>
                                         <td>未上傳使用者數</td>
-                                        <td>30</td>
+                                        <td>{{$not_upload->count()}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -52,20 +52,22 @@
                                     <thead>
                                         <tr>
                                             <td>姓名</td>
-                                            <td>最後上傳日期</td>
-                                            <td>檔案數</td>
+                                            <td>手機</td>
+                                            <td>信箱</td>
+                                            <td>最後上傳</td>
                                             <td></td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for($i = 0; $i <= 20; $i++)
+                                        @foreach($uploads as $upload)
                                         <tr>
-                                            <td>林熙哲</td>
-                                            <td>2015/5/2</td>
-                                            <td>3</td>
-                                            <td><a href="" class="btn btn-primary" data-toggle="modal" data-target="#detail-modal">檢視</a></td>
+                                            <td>{{$upload->user->leader_name}}</td>
+                                            <td>{{$upload->user->mobile}}</td>
+                                            <td>{{$upload->user->email}}</td>
+                                            <td>{{$upload->updated_at}}</td>
+                                            <td>{{-- <a href="" class="btn btn-primary" data-toggle="modal" data-target="#detail-modal">檢視</a> --}}</td>
                                         </tr>
-                                        @endfor
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -79,19 +81,19 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <td>使用者名稱</td>
+                                            <td>姓名</td>
                                             <td>手機</td>
                                             <td>信箱</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for($i = 0; $i <= 10; $i++)
+                                        @foreach($not_upload as $item)
                                         <tr>
-                                            <td>林熙哲</td>
-                                            <td>0912-345-678</td>
-                                            <td>linroex@mail.ntust.edu.tw</td>
+                                            <td>{{$item->leader_name}}</td>
+                                            <td>{{$item->mobile}}</td>
+                                            <td>{{$item->email}}</td>
                                         </tr>
-                                        @endfor
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

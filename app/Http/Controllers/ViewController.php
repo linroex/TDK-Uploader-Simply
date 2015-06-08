@@ -3,6 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Issue;
+use App\Upload;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -35,8 +37,24 @@ class ViewController extends Controller {
 		]);
 	}
 
-	public function showIssueDetailAdminPage() {
-		return view('issue.view');
+	public function showIssueDetailAdminPage($id) {
+
+		$uploads = Upload::where('issue_id', '=', $id)->groupBy('user_id')->get();
+		$upload_user = $uploads->keyBy('user_id');
+		$user = User::all();
+
+		$not_upload = $user->filter(function($item) use($upload_user) {
+			if(!$upload_user->has($item->id)) {
+				return $item;
+			}
+		});
+
+		return view('issue.view')->with([
+			'issue' => Issue::find($id),
+			'uploads' => $uploads,
+			'not_upload' => $not_upload
+
+		]);
 	}
 
 	public function showIssueListUserPage() {
