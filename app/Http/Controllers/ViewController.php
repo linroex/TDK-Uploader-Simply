@@ -58,7 +58,9 @@ class ViewController extends Controller {
 	}
 
 	public function showIssueListUserPage() {
-		return view('issue.list-user');
+		return view('issue.list-user')->with([
+			'issues' => Issue::all()
+		]);
 	}
 
 	public function showIssueUploadUserPage() {

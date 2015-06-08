@@ -11,34 +11,34 @@
         <section id="content">
             <section class="page">
                 
-                @for($i = 0; $i <= 5; $i++)
+                @foreach($issues as $issue)
                 <div class="col-sm-6">
                     <div class="panel panel-profile">
                         <div class="panel-heading text-center bg-info">
                             <i class="fa fa-upload"></i>
-                            <h3>測試</h3>
-                            <p>測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試</p>
+                            <h3>{{$issue->name}}</h3>
+                            <p>{{$issue->content}}</p>
                         </div>
 
                         <div class="list-justified-container">
                             <ul class="list-justified text-center">
                                 <li>
-                                    <p class="size-h3">2015/5/3</p>
+                                    <p class="size-h3">{{$issue->end_date}}</p>
                                     <p class="text-muted">End</p>
                                 </li>
                                 <li>
-                                    <p class="size-h3">5</p>
+                                    <p class="size-h3">{{$issue->upload_count}}</p>
                                     <p class="text-muted">Files</p>
                                 </li>
                                 <li>
-                                    <a href="{{url('/issue/' . $i)}}" class="btn btn-lg btn-primary">詳細</a>
+                                    <a href="{{url('/issue/' . $issue->id)}}" class="btn btn-lg btn-primary">詳細</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     {{-- Panel end --}}
                 </div>
-                @endfor
+                @endforeach
                     
         </section>
     </div>
