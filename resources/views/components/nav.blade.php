@@ -20,6 +20,12 @@
                 <i class="fa fa-caret-right icon-has-ul"></i>
             </li> --}}
             <li>
+                <a href="{{url('/admin/user/batch')}}">
+                    <i class="fa fa-user"></i>
+                    <span>新增用戶</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{url('/admin/issue/add')}}">
                     <i class="fa fa-plus"></i>
                     <span>新增任務</span>

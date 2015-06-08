@@ -13,7 +13,7 @@
 use App\User;
 
 Route::get('/test', function() {
-    
+
 });
 
 Route::get('/login', 'ViewController@showLoginPage');
@@ -23,6 +23,10 @@ Route::group(['prefix' => '/admin'], function() {
         Route::get('/add', 'ViewController@showIssueAddAdminPage');
         Route::get('/list', 'ViewController@showIssueListAdminPage');
         Route::get('/{id}', 'ViewController@showIssueDetailAdminPage');
+    });
+
+    Route::group(['prefix' => '/user'], function() {
+        Route::get('/batch', 'ViewController@showBatchAddUserPage');
     });
 });
 

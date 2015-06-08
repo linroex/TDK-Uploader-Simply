@@ -29,4 +29,8 @@ class ViewController extends Controller {
 	public function showIssueUploadUserPage() {
 		return view('issue.upload');
 	}
+
+	public function showBatchAddUserPage() {
+		return view('user.batch');
+	}
 }
