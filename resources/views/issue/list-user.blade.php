@@ -31,7 +31,7 @@
                                     <p class="text-muted">Files</p>
                                 </li>
                                 <li>
-                                    <a href="" class="btn btn-lg btn-primary">詳細</a>
+                                    <a href="{{url('/issue/' . $i)}}" class="btn btn-lg btn-primary">詳細</a>
                                 </li>
                             </ul>
                         </div>

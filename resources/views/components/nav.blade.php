@@ -20,13 +20,13 @@
                 <i class="fa fa-caret-right icon-has-ul"></i>
             </li> --}}
             <li>
-                <a href="#">
+                <a href="{{url('/admin/issue/add')}}">
                     <i class="fa fa-plus"></i>
                     <span>新增任務</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{url('admin/issue/list')}}">
                     <i class="fa fa-list"></i>
                     <span>檢視任務</span>
                 </a>

@@ -37,7 +37,7 @@
                                         <td>2015/5/1</td>
                                         <td>2015/5/3</td>
                                         <td>10</td>
-                                        <td class="text-center"><a href="" class="btn btn-primary">檢視</a></td>
+                                        <td class="text-center"><a href="{{url('/admin/issue/' . $i)}}" class="btn btn-primary">檢視</a></td>
                                     </tr>
                                     @endfor
                                 </tbody>

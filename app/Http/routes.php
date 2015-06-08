@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function() {
-    return view("issue.view");
+Route::get('/login', 'ViewController@showLoginPage');
+
+Route::group(['prefix' => '/admin'], function() {
+    Route::group(['prefix' => '/issue'], function() {
+        Route::get('/add', 'ViewController@showIssueAddAdminPage');
+        Route::get('/list', 'ViewController@showIssueListAdminPage');
+        Route::get('/{id}', 'ViewController@showIssueDetailAdminPage');
+    });
+});
+
+Route::group(['prefix' => 'issue'], function() {
+    Route::get('/list', 'ViewController@showIssueListUserPage');
+    Route::get('/{id}', 'ViewController@showIssueUploadUserPage');
 });
