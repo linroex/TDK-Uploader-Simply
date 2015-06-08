@@ -19,7 +19,9 @@
                 <div class="singin-body">
                     <div class="container">
                         <div class="form-container">
-                            <form action="" class="form-horizontal">
+                            @include('components.notifier')
+                            <form action="{{url('/login')}}" method="post" class="form-horizontal">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <fieldset>
                                     <div class="form-froup">
                                         <div class="input-group input-group-lg">
@@ -30,6 +32,8 @@
                                         </div>
                                     </div>
                                     {{-- Form group end --}}
+                                    
+                                    <br>
 
                                     <div class="form-froup">
                                         <div class="input-group input-group-lg">
@@ -44,7 +48,7 @@
                                     <div class="form-group"></div>
 
                                     <div class="form-froup">
-                                        <a href="" class="btn btn-block btn-lg btn-primary">登入</a>
+                                        <input type="submit" value="登入" class="btn btn-block btn-lg btn-primary">
                                     </div>
                                     {{-- Form group end --}}
                                 </fieldset>
