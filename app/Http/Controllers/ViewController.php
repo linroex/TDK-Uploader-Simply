@@ -5,7 +5,21 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use Session;
+
 class ViewController extends Controller {
+	public function showIndex() {
+		if(Session::has('user')) {
+			if(Session::get('user')->type === 'admin') {
+				return view('issue.list-admin');
+			}else if(Session::get('user')->type === 'user') {
+				return view('issue.list-user');
+			}
+		}else {
+			return redirect('/login');
+		}
+	}
+
 	public function showLoginPage() {
 		return view('Login');
 	}

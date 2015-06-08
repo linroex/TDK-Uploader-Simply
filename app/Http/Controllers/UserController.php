@@ -25,4 +25,9 @@ class UserController extends Controller {
 			return redirect('/login')->withErrors('Password is wrong');
 		}
 	}
+
+	public function logout() {
+		Session::flush();
+		return redirect('login');
+	}
 }

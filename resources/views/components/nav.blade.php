@@ -19,6 +19,7 @@
 
                 <i class="fa fa-caret-right icon-has-ul"></i>
             </li> --}}
+            @if(Session::get('user')->type === 'admin')
             <li>
                 <a href="{{url('/admin/user/batch')}}">
                     <i class="fa fa-user"></i>
@@ -37,6 +38,16 @@
                     <span>檢視任務</span>
                 </a>
             </li>
+            @endif
+
+            @if(Session::get('user')->type === 'user')
+            <li>
+                <a href="{{url('issue/list')}}">
+                    <i class="fa fa-list"></i>
+                    <span>檢視任務</span>
+                </a>
+            </li>
+            @endif
             
         </ul>
 

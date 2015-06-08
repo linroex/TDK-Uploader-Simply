@@ -15,10 +15,14 @@ Route::get('/test', function() {
 
 });
 
+Route::get('/', 'ViewController@showIndex');
+
 Route::get('/login', 'ViewController@showLoginPage');
 Route::post('/login', 'UserController@login');
 
-Route::group(['prefix' => '/admin'], function() {
+Route::get('/logout', 'UserController@logout');
+
+Route::group(['prefix' => '/admin', 'middleware' => 'checkAdmin'], function() {
     Route::group(['prefix' => '/issue'], function() {
         Route::get('/add', 'ViewController@showIssueAddAdminPage');
         Route::get('/list', 'ViewController@showIssueListAdminPage');
@@ -30,7 +34,9 @@ Route::group(['prefix' => '/admin'], function() {
     });
 });
 
-Route::group(['prefix' => 'issue'], function() {
-    Route::get('/list', 'ViewController@showIssueListUserPage');
-    Route::get('/{id}', 'ViewController@showIssueUploadUserPage');
+Route::group(['middleware' => 'checkUser'], function() {
+    Route::group(['prefix' => 'issue'], function() {
+        Route::get('/list', 'ViewController@showIssueListUserPage');
+        Route::get('/{id}', 'ViewController@showIssueUploadUserPage');
+    });    
 });

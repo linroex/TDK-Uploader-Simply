@@ -40,6 +40,7 @@ class InstallCommand extends Command {
 	 */
 	public function fire()
 	{
+		$name = $this->ask('Name: ');
 		$email = $this->ask('Email: ');
 		$password = $this->secret('Password: ');
 		$mobile = $this->ask('Mobile: ');
@@ -65,6 +66,7 @@ class InstallCommand extends Command {
 			'email' => $email,
 			'password' => Hash::make($password),
 			'mobile' => $mobile,
+			'leader_name' => $name,
 			'type' => 'admin'
 		]);
 	}

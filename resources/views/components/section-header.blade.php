@@ -17,11 +17,11 @@
             <div class="navbar-nav nav pull-right">
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        Name
+                        {{Session::get('user')->leader_name}}
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="">Profile</a></li>
-                        <li><a href="">Logout</a></li>
+                        <li><a href="{{url('logout')}}">Logout</a></li>
                     </ul>
                 </li>
             </div>
