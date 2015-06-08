@@ -23,6 +23,7 @@ class IssueController extends Controller {
 			'start_date' => $request->get('issue-start'),
 			'end_date' => $request->get('issue-end'),
 			'user_id' => Session::get('user')->id,
+			'upload_count' => 0
 		]);
 
 		return redirect('/admin/issue/list');

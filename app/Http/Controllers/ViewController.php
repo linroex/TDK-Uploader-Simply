@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Issue;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class ViewController extends Controller {
 	public function showIndex() {
 		if(Session::has('user')) {
 			if(Session::get('user')->type === 'admin') {
-				return view('issue.list-admin');
+				return view('issue.list-admin')->with(['issues' => Issue::all()]);
 			}else if(Session::get('user')->type === 'user') {
 				return view('issue.list-user');
 			}
@@ -29,7 +30,9 @@ class ViewController extends Controller {
 	}
 
 	public function showIssueListAdminPage() {
-		return view('issue.list-admin');
+		return view('issue.list-admin')->with([
+			'issues' => Issue::all()
+		]);
 	}
 
 	public function showIssueDetailAdminPage() {
