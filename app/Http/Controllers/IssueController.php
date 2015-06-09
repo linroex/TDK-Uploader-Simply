@@ -8,6 +8,7 @@ use App\Upload;
 use Illuminate\Http\Request;
 
 use Session;
+use Storage;
 
 class IssueController extends Controller {
     public function addIssue(Request $request) {
@@ -38,8 +39,8 @@ class IssueController extends Controller {
         foreach($request->file('file') as $file) {
             if($file !== null) {
                 if($file->isValid()) {
-                    $dest_path = storage_path('uploads/' . $request->get('issue_id') . '/' . Session::get('user')->id);
-                    $file_name = time() . '[time]' . $file->getClientOriginalName();
+                    $dest_path = storage_path('app/uploads/' . $request->get('issue_id') . '/' . Session::get('user')->id);
+                    $file_name = time() . '-time-' . $file->getClientOriginalName();
                     $file->move($dest_path, $file_name);
 
                     Upload::create([
@@ -55,6 +56,21 @@ class IssueController extends Controller {
             }
         }   
         
-        return redirect('issue/' . $request->get('issue_id'));
+        return redirect()->back();
+    }
+
+    public function delete($issue_id, $file) {
+        $file = 'uploads/' . $issue_id . '/' . Session::get('user')->id . '/' . $file;
+        Storage::delete($file);
+        
+        Upload::where('path', '=', storage_path('app/' . $file))
+              ->where('user_id', '=', Session::get('user')->id)
+              ->delete();
+
+        Issue::find($issue_id)->update([
+            'upload_count' => Upload::where('user_id', '=', Session::get('user')->id)->count()
+        ]);
+
+        return redirect()->back();
     }
 }

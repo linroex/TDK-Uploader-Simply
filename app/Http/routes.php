@@ -42,6 +42,7 @@ Route::group(['middleware' => 'checkUser'], function() {
         Route::get('/list', 'ViewController@showIssueListUserPage');
         Route::get('/{id}', 'ViewController@showIssueUploadUserPage');
 
+        Route::get('/{issue_id}/{file}/delete', 'IssueController@delete');
         Route::post('/{id}/upload', 'IssueController@upload');
     });    
 });
