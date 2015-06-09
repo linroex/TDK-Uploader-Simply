@@ -41,5 +41,7 @@ Route::group(['middleware' => 'checkUser'], function() {
     Route::group(['prefix' => 'issue'], function() {
         Route::get('/list', 'ViewController@showIssueListUserPage');
         Route::get('/{id}', 'ViewController@showIssueUploadUserPage');
+
+        Route::post('/{id}/upload', 'IssueController@upload');
     });    
 });

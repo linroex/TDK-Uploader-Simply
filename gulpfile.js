@@ -35,5 +35,6 @@ elixir(function(mix) {
     mix.copy("resources/assets/images", "public/build/images");
     mix.copy("resources/assets/css/img", "public/build/css/img");
     mix.copy("resources/assets/css/ui/images", "public/build/css/ui/images");
+    mix.copy("resources/assets/js/dropzone.js", "public/js/dropzone.js");
 
 });
