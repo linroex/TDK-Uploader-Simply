@@ -60,17 +60,23 @@ class IssueController extends Controller {
     }
 
     public function delete($issue_id, $file) {
-        $file = 'uploads/' . $issue_id . '/' . Session::get('user')->id . '/' . $file;
-        Storage::delete($file);
+        if(Issue::find($issue_id)) {
+            $file = 'uploads/' . $issue_id . '/' . Session::get('user')->id . '/' . $file;
+            
+            Storage::delete($file);
+            
+            Upload::where('path', '=', storage_path('app/' . $file))
+                  ->where('user_id', '=', Session::get('user')->id)
+                  ->delete();
+
+            Issue::find($issue_id)->update([
+                'upload_count' => Upload::where('user_id', '=', Session::get('user')->id)->count()
+            ]);
+
+            return redirect()->back();    
+        }else {
+            return abort(404);
+        }
         
-        Upload::where('path', '=', storage_path('app/' . $file))
-              ->where('user_id', '=', Session::get('user')->id)
-              ->delete();
-
-        Issue::find($issue_id)->update([
-            'upload_count' => Upload::where('user_id', '=', Session::get('user')->id)->count()
-        ]);
-
-        return redirect()->back();
     }
 }
