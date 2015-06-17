@@ -59,7 +59,7 @@
                                         <tbody>
                                             @foreach($uploads as $upload)
                                             <tr>
-                                                <td>{{explode("-time-", basename($upload->path))[1]}}</td>
+                                                <td>{{basename($upload->path)}}</td>
                                                 <td>{{$upload->updated_at}}</td>
                                                 <td><a href="{{url('/issue/' . $issue->id .'/' . basename($upload->path) . '/delete')}}" class="btn btn-danger">刪除</a></td>
                                             </tr>

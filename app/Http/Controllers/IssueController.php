@@ -42,7 +42,15 @@ class IssueController extends Controller {
             if($file !== null) {
                 if($file->isValid()) {
                     $dest_path = storage_path('app/uploads/' . Session::get('user')->team_id . '/' . $request->get('issue_id'));
-                    $file_name = time() . '-time-' . $file->getClientOriginalName();
+
+                    $team_id = Session::get('user')->team_id;
+                    $slug = Issue::find($request->get('issue_id'))->slug;
+                    $type = explode('.', $request->file('file')[0]->getClientOriginalName());
+                    $type = $type[count($type)-1];
+                    $number = Upload::where('issue_id', '=', $request->get('issue_id'))->count();
+
+                    $file_name = "{$team_id}_{$slug}_{$number}.{$type}";
+                    
                     $file->move($dest_path, $file_name);
 
                     Upload::create([
