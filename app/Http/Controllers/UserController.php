@@ -50,21 +50,22 @@ class UserController extends Controller {
 			// 	'mobile' => 'required|digits:10',
 			// 	'school' => 'required',
 			// ]);
-			$password = str_random(16);
 
 			User::create([
 				'email' => trim($columns[9]),
-				'password' => Hash::make($password),
+				'team_id' => trim($columns[0]),
+				'password' => Hash::make(strtolower(trim($columns[10]))),
 				'team_name' => trim($columns[1]),
 				'leader_name' => trim($columns[3]),
-				'mobile' => trim($columns[8]),
+				'mobile' => str_replace('-', '', trim($columns[8])),
 				'school' => trim($columns[5]),
 				'type' => 'user'
 			]);
 			
-			echo "$password<br/>";
+			
 		}
 
+		return redirect()->back();
 		
 	}
 }
