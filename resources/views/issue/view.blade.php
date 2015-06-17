@@ -51,6 +51,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <td>隊伍編號</td>
                                             <td>姓名</td>
                                             <td>手機</td>
                                             <td>信箱</td>
@@ -61,6 +62,7 @@
                                     <tbody>
                                         @foreach($uploads as $upload)
                                         <tr>
+                                            <td>{{$upload->user->team_id}}</td>
                                             <td>{{$upload->user->leader_name}}</td>
                                             <td>{{$upload->user->mobile}}</td>
                                             <td>{{$upload->user->email}}</td>
@@ -81,6 +83,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <td>隊伍編號</td>
                                             <td>姓名</td>
                                             <td>手機</td>
                                             <td>信箱</td>
@@ -89,6 +92,7 @@
                                     <tbody>
                                         @foreach($not_upload as $item)
                                         <tr>
+                                            <td>{{$item->team_id}}</td>
                                             <td>{{$item->leader_name}}</td>
                                             <td>{{$item->mobile}}</td>
                                             <td>{{$item->email}}</td>
