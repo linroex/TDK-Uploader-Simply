@@ -39,7 +39,7 @@ class IssueController extends Controller {
         foreach($request->file('file') as $file) {
             if($file !== null) {
                 if($file->isValid()) {
-                    $dest_path = storage_path('app/uploads/' . $request->get('issue_id') . '/' . Session::get('user')->id);
+                    $dest_path = storage_path('app/uploads/' . Session::get('user')->team_id . '/' . $request->get('issue_id'));
                     $file_name = time() . '-time-' . $file->getClientOriginalName();
                     $file->move($dest_path, $file_name);
 
@@ -61,7 +61,7 @@ class IssueController extends Controller {
 
     public function delete($issue_id, $file) {
         if(Issue::find($issue_id)) {
-            $file = 'uploads/' . $issue_id . '/' . Session::get('user')->id . '/' . $file;
+            $file = 'uploads/' . Session::get('user')->team_id . '/' . $issue_id . '/' . $file;
             
             Storage::delete($file);
             
