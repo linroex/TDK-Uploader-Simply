@@ -33,6 +33,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="issue-slug" class="col-sm-2">任務代稱</label>
+                                <div class="col-sm-10">
+                                    <input id="issue-slug" name="issue-slug" type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="issue-text" class="col-sm-2">任務說明</label>
                                 <div class="col-sm-10">
                                     <textarea name="issue-text" id="issue-text" rows="10" class="form-control"></textarea>
