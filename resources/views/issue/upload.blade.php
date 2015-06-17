@@ -72,6 +72,12 @@
                             <h3>上傳檔案</h3>
                             <div class="row">
                                 <div class="col-sm-12">
+                                    <div class="alert alert-info">
+                                        <h3>說明</h3>
+                                        <ol>
+                                            <li>如果要更新檔案，請先刪除原檔案在上傳新檔案</li>
+                                        </ol>
+                                    </div>
                                     @include('components.notifier')
                                     <form action="{{url('issue/' . $issue->id . '/upload')}}" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
