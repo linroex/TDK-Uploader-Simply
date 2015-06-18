@@ -26,24 +26,55 @@
                         <strong>上傳檔案</strong>
                     </div>
                     <div class="panel-body">
-                        <h3>基本資訊</h3>
+
+                        
 
                         <div class="col-md-8">
+                            <h3>上傳任務說明</h3>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <td class="col-sm-2">名稱</td>
+                                                <td class="col-sm-2">任務名稱</td>
                                                 <td>{{$issue->name}}</td>
                                             </tr>
                                             <tr>
-                                                <td>說明</td>
+                                                <td>任務說明</td>
                                                 <td>{{$issue->content}}</td>
                                             </tr>
                                             <tr>
                                                 <td>截止日期</td>
                                                 <td>{{$issue->end_date}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{-- col-sm-6 end --}}
+                            </div>
+                            {{-- Row end --}}
+
+                            <h3>隊伍資料</h3>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-sm-2">參賽組別</td>
+                                                <td>{{substr(Session::get('user')->team_id, 0, 1) == 'A'?'自動組':'遙控組'}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>參賽學校</td>
+                                                <td>{{Session::get('user')->school}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>隊伍編號</td>
+                                                <td>{{Session::get('user')->team_id}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>隊伍名稱</td>
+                                                <td>{{Session::get('user')->team_name}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -62,6 +93,7 @@
                                                 <td>{{basename($upload->path)}}</td>
                                                 <td>{{$upload->updated_at}}</td>
                                                 <td><a href="{{url('/issue/' . $issue->id .'/' . basename($upload->path) . '/delete')}}" class="btn btn-danger">刪除</a></td>
+                                                {{-- <td><a href="{{url($upload->path)}}" class="btn btn-default">檢視</a></td> --}}
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -75,7 +107,7 @@
                                     <div class="alert alert-info">
                                         <h3>說明</h3>
                                         <ol>
-                                            <li>如果要更新檔案，請先刪除原檔案在上傳新檔案</li>
+                                            <li>如果要更新檔案，請先刪除原檔案，再上傳新檔案。</li>
                                         </ol>
                                     </div>
                                     @include('components.notifier')

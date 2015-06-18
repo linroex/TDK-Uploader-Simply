@@ -20,8 +20,8 @@
                                 <thead>
                                     <tr>
                                         <td class="hidden"></td>   
-                                        <td class="col-sm-2">名稱</td>
-                                        <td class="col-sm-5">介紹</td>
+                                        <td class="col-sm-2">任務名稱</td>
+                                        <td class="col-sm-5">任務介紹</td>
                                         <td class="col-sm-1">開始日期</td>
                                         <td class="col-sm-1">截止日期</td>
                                         <td class="col-sm-1">上傳人數</td>

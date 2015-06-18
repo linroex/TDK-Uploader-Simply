@@ -20,11 +20,11 @@
                                 <h3>任務資訊</h3>
                                 <table class="table">
                                     <tr>
-                                        <td class="col-sm-2">名稱</td>
+                                        <td class="col-sm-2">任務名稱</td>
                                         <td>{{$issue->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td>說明</td>
+                                        <td>任務說明</td>
                                         <td>{{$issue->content}}</td>
                                     </tr>
                                     <tr>
@@ -47,7 +47,7 @@
                         
                         <div class="row">
                             <div class="col-sm-12">
-                                <h3>上傳清單</h3>
+                                <h3>已上傳清單</h3>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
