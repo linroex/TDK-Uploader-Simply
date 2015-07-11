@@ -90,7 +90,7 @@
                                         <tbody>
                                             @foreach($uploads as $upload)
                                             <tr>
-                                                <td>{{basename($upload->path)}}</td>
+                                                <td><a href="{{url('file/' . $upload->id)}}">{{basename($upload->path)}}</a></td>
                                                 <td>{{$upload->updated_at}}</td>
                                                 <td><a href="{{url('/issue/' . $issue->id .'/' . basename($upload->path) . '/delete')}}" class="btn btn-danger">刪除</a></td>
                                                 {{-- <td><a href="{{url($upload->path)}}" class="btn btn-default">檢視</a></td> --}}

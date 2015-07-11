@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Session;
 use Storage;
+use Response;
 
 class IssueController extends Controller {
     public function addIssue(Request $request) {
@@ -89,5 +90,9 @@ class IssueController extends Controller {
             return abort(404);
         }
         
+    }
+
+    public function download($file_id) {
+        return Response::download(Upload::where('id', '=', $file_id)->where('user_id', '=', Session::get('user')->id)->first()->path);
     }
 }

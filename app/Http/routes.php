@@ -38,6 +38,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'checkAdmin'], function() {
 });
 
 Route::group(['middleware' => 'checkUser'], function() {
+    Route::get('/file/{file_id}', 'IssueController@download');
     Route::group(['prefix' => 'issue'], function() {
         Route::get('/list', 'ViewController@showIssueListUserPage');
         Route::get('/{id}', 'ViewController@showIssueUploadUserPage');
@@ -46,3 +47,4 @@ Route::group(['middleware' => 'checkUser'], function() {
         Route::post('/{id}/upload', 'IssueController@upload');
     });    
 });
+

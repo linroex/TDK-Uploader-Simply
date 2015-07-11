@@ -62,6 +62,8 @@ class ViewController extends Controller {
         $count = Upload::where('user_id', '=', Session::get('user')->id)->groupBy('issue_id')->get(array('issue_id', DB::raw('count(*) as count')))->toArray();
         $issues = Issue::all()->toArray();
 
+        // dd($count);
+
         $i = 0;
         for($i = 0; $i < count($issues); $i++) {
             if(count($count) <= $i) {
@@ -70,7 +72,9 @@ class ViewController extends Controller {
                 $issues[$i]['count'] = $count[$i]['count'];    
             }
         }
-        
+
+        // dd($issues);
+
         return view('issue.list-user')->with([
             'issues' => $issues
         ]);
