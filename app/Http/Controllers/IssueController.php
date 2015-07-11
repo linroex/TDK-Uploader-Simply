@@ -45,7 +45,7 @@ class IssueController extends Controller {
 
                     $team_id = Session::get('user')->team_id;
                     $slug = Issue::find($request->get('issue_id'))->slug;
-                    $type = explode('.', $request->file('file')[0]->getClientOriginalName());
+                    $type = explode('.', $file->getClientOriginalName());
                     $type = $type[count($type)-1];
                     $number = Upload::where('issue_id', '=', $request->get('issue_id'))->count();
 
@@ -64,6 +64,7 @@ class IssueController extends Controller {
                     ]);
                 }
             }
+
         }   
         
         return redirect()->back();
