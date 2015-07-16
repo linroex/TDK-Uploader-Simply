@@ -1616,9 +1616,9 @@ function Datepicker() {
 		monthNames: ["一月","二月","三月","四月","五月","六月",
 			"七月","八月","九月","十月","十一月","十二月"], // Names of months for drop-down and formatting
 		monthNamesShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"], // For formatting
-		dayNames: ["一", "二", "三", "四", "五", "六", "日"], // For formatting
-		dayNamesShort: ["一", "二", "三", "四", "五", "六", "日"], // For formatting
-		dayNamesMin: ["一", "二", "三", "四", "五", "六", "日"], // Column headings for days starting at Sunday
+		dayNames: ["日", "一", "二", "三", "四", "五", "六"], // For formatting
+		dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"], // For formatting
+		dayNamesMin: ["日", "一", "二", "三", "四", "五", "六"], // Column headings for days starting at Sunday
 		weekHeader: "Wk", // Column header for week of the year
 		dateFormat: "yy/mm/dd", // See format options on parseDate
 		firstDay: 1, // The first day of the week, Sun = 0, Mon = 1, ...
