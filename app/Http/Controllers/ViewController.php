@@ -59,22 +59,13 @@ class ViewController extends Controller {
     }
 
     public function showIssueListUserPage() {
-        $count = Upload::where('user_id', '=', Session::get('user')->id)->groupBy('issue_id')->get(array('issue_id', DB::raw('count(*) as count')))->toArray();
-        $issues = Issue::all()->toArray();
-
-        // dd($count);
+        $issues = Issue::where('start_date', '<=', date('Y-m-d'))->where('end_date', '>=', date('Y-m-d'))->get()->toArray();
 
         $i = 0;
         for($i = 0; $i < count($issues); $i++) {
-            if(count($count) <= $i) {
-                $issues[$i]['count'] = 0;
-            }else {
-                $issues[$i]['count'] = $count[$i]['count'];    
-            }
+            $issues[$i]['count'] = Upload::where('issue_id', '=', $issues[$i]['id'])->where('user_id', '=', Session::get('user')->id)->count();
         }
-
-        // dd($issues);
-
+        
         return view('issue.list-user')->with([
             'issues' => $issues
         ]);
