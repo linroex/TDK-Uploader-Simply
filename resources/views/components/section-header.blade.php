@@ -17,7 +17,7 @@
             <div class="navbar-nav nav pull-right">
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        {{Session::get('user')->leader_name}}
+                        {{Session::get('user')->team_name}}
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="">Profile</a></li>
