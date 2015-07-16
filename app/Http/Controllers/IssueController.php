@@ -61,7 +61,7 @@ class IssueController extends Controller {
                     ]);
 
                     Issue::find($request->get('issue_id'))->update([
-                        'upload_count' => Upload::where('issue_id', '=', $request->get('issue_id'))->where('user_id', '=', Session::get('user')->id)->groupBy('user_id')->get()->count()
+                        'upload_count' => Upload::where('issue_id', '=', $request->get('issue_id'))->groupBy('user_id')->get()->count()
                     ]);
                 }
             }
@@ -82,7 +82,7 @@ class IssueController extends Controller {
                   ->delete();
 
             Issue::find($issue_id)->update([
-                'upload_count' => Upload::where('issue_id', '=', $issue_id)->where('user_id', '=', Session::get('user')->id)->groupBy('user_id')->get()->count()
+                'upload_count' => Upload::where('issue_id', '=', $issue_id)->groupBy('user_id')->get()->count()
             ]);
 
             return redirect()->back();    
