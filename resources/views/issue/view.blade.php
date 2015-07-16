@@ -56,10 +56,11 @@
                                             <td>手機</td>
                                             <td>信箱</td>
                                             <td>最後上傳</td>
-                                            <td></td>
+                                            <td>檔案數</td>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         @foreach($uploads as $upload)
                                         <tr>
                                             <td>{{$upload->user->team_id}}</td>
@@ -67,7 +68,7 @@
                                             <td>{{$upload->user->mobile}}</td>
                                             <td>{{$upload->user->email}}</td>
                                             <td>{{$upload->updated_at}}</td>
-                                            <td>{{-- <a href="" class="btn btn-primary" data-toggle="modal" data-target="#detail-modal">檢視</a> --}}</td>
+                                            <td>{{$upload->count}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
