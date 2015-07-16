@@ -48,7 +48,7 @@
                                 <div class="panel-heading text-center bg-info">
                                     <i class="fa fa-upload"></i>
                                     <h3>{{$issue['name']}}</h3>
-                                    <p>{{$issue['content']}}</p>
+                                    <p>{!!$issue['content']!!}</p>
                                 </div>
 
                                 <div class="list-justified-container">

@@ -41,7 +41,7 @@
                                             </tr>
                                             <tr>
                                                 <td>任務說明</td>
-                                                <td>{{$issue->content}}</td>
+                                                <td>{!!$issue->content!!}</td>
                                             </tr>
                                             <tr>
                                                 <td>截止日期</td>

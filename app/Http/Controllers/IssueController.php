@@ -15,7 +15,7 @@ class IssueController extends Controller {
     public function addIssue(Request $request) {
         $this->validate($request, [
             'issue-name' => 'required',
-            'issue-slug' => 'required',
+            'issue-slug' => 'required|unique:issues,slug',
             'issue-text' => 'required',
             'issue-start' => 'required|date',
             'issue-end' => "required|date|after:{$request->get('issue-start')}"
@@ -24,7 +24,7 @@ class IssueController extends Controller {
         Issue::create([
             'name' => $request->get('issue-name'),
             'slug' => str_replace(' ', '-', $request->get('issue-slug')),
-            'content' => $request->get('issue-text'),
+            'content' => str_replace("\n", '<br />', $request->get('issue-text')),
             'start_date' => $request->get('issue-start'),
             'end_date' => $request->get('issue-end'),
             'user_id' => Session::get('user')->id,

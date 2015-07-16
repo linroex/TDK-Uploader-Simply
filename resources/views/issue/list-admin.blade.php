@@ -33,7 +33,7 @@
                                     <tr>
                                         <td class="hidden"><input type="hidden" name="id" value="{{$issue->id}}"></td>
                                         <td>{{$issue->name}}</td>
-                                        <td class="hidden-sm">{{$issue->content}}</td>
+                                        <td class="hidden-sm">{!!$issue->content!!}</td>
                                         <td>{{$issue->start_date}}</td>
                                         <td>{{$issue->end_date}}</td>
                                         <td>{{$issue->upload_count}}</td>
