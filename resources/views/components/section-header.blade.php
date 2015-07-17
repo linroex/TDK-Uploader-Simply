@@ -1,7 +1,7 @@
 <section id="header" class="top-header">
     <header class="clearfix">
         <div class="logo bg-primary">
-            <a href="">
+            <a href="{{url('/')}}">
                 <span class="glyphicon glyphicon-fire logo-icon"></span>
                 <span>TDK 19</span>
             </a>
