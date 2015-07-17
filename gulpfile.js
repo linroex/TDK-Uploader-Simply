@@ -25,7 +25,6 @@ elixir(function(mix) {
         "bootstrap.js",
         "jquery-ui.js",
         "jquery.tablesorter.min.js"
-
     ]);
 
     mix.version(["css/all.css", "js/all.js"]);

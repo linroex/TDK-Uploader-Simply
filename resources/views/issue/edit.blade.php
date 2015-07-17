@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label for="issue-text" class="col-sm-2">任務說明</label>
                                 <div class="col-sm-10">
-                                    <textarea name="issue-text" id="issue-text" rows="10" class="form-control">{{$issue->content}}</textarea>
+                                    <textarea name="issue-text" id="issue-text" rows="10" class="form-control">{{str_replace("<br />", "\n", $issue->content)}}</textarea>
                                 </div>
                             </div>
 
