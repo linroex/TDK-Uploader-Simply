@@ -42,7 +42,7 @@
 
                 <div class="row">
                     @foreach($issues as $issue)
-                        @if(strtotime(date('Y-m-d')) >= strtotime($issue['start_date']) and strtotime(date('Y-m-d')) <= strtotime($issue['end_date']))
+                        @if(time() >= strtotime($issue['start_date']) and time() <= strtotime($issue['end_date']))
                         <div class="col-sm-6">
                             <div class="panel panel-profile">
                                 <div class="panel-heading text-center bg-info">

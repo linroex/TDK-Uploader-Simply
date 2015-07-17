@@ -39,36 +39,41 @@ class IssueController extends Controller {
             'issue_id' => 'required|exists:issues,id'
         ]);
 
-        foreach($request->file('file') as $file) {
-            if($file !== null) {
-                if($file->isValid()) {
-                    $dest_path = storage_path('app/uploads/' . Session::get('user')->team_id . '/' . $request->get('issue_id'));
+        if(time() >= strtotime(Issue::find($request->issue_id)->start_date) and time() <= strtotime(Issue::find($request->issue_id)->end_date)) {
+            foreach($request->file('file') as $file) {
+                if($file !== null) {
+                    if($file->isValid()) {
+                        $dest_path = storage_path('app/uploads/' . Session::get('user')->team_id . '/' . $request->get('issue_id'));
 
-                    $team_id = Session::get('user')->team_id;
-                    $slug = Issue::find($request->get('issue_id'))->slug;
-                    $type = explode('.', $file->getClientOriginalName());
-                    $type = $type[count($type)-1];
-                    $number = Upload::where('issue_id', '=', $request->get('issue_id'))->count();
+                        $team_id = Session::get('user')->team_id;
+                        $slug = Issue::find($request->get('issue_id'))->slug;
+                        $type = explode('.', $file->getClientOriginalName());
+                        $type = $type[count($type)-1];
+                        $number = Upload::where('issue_id', '=', $request->get('issue_id'))->count();
 
-                    $file_name = "{$team_id}_{$slug}_{$number}.{$type}";
-                    
-                    $file->move($dest_path, $file_name);
+                        $file_name = "{$team_id}_{$slug}_{$number}.{$type}";
+                        
+                        $file->move($dest_path, $file_name);
 
-                    Upload::create([
-                        'user_id' => Session::get('user')->id,
-                        'issue_id' => $request->get('issue_id'),
-                        'path' => $dest_path . '/' . $file_name
-                    ]);
+                        Upload::create([
+                            'user_id' => Session::get('user')->id,
+                            'issue_id' => $request->get('issue_id'),
+                            'path' => $dest_path . '/' . $file_name
+                        ]);
 
-                    Issue::find($request->get('issue_id'))->update([
-                        'upload_count' => Upload::where('issue_id', '=', $request->get('issue_id'))->groupBy('user_id')->get()->count()
-                    ]);
+                        Issue::find($request->get('issue_id'))->update([
+                            'upload_count' => Upload::where('issue_id', '=', $request->get('issue_id'))->groupBy('user_id')->get()->count()
+                        ]);
+                    }
                 }
+
             }
 
-        }   
+            return redirect()->back();
+        }else {
+            return abort(404);
+        }
         
-        return redirect()->back();
     }
 
     public function delete($issue_id, $file) {
@@ -86,7 +91,7 @@ class IssueController extends Controller {
 
                 return redirect()->back();    
             }else {
-                return abort(404);    
+                return abort(404);
             }
             
         }else {

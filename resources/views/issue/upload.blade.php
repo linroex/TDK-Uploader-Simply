@@ -26,9 +26,6 @@
                         <strong>上傳檔案</strong>
                     </div>
                     <div class="panel-body">
-
-                        
-
                         <div class="col-md-8">
                             <h3>上傳任務說明</h3>
                             <div class="row">

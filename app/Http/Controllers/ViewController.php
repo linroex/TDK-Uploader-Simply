@@ -72,10 +72,15 @@ class ViewController extends Controller {
     }
 
     public function showIssueUploadUserPage($id) {
-        return view('issue.upload')->with([
-            'issue' => Issue::find($id),
-            'uploads' => Upload::where('user_id', '=', Session::get('user')->id)->where('issue_id', '=', $id)->get(),
-        ]);
+        if(time() >= strtotime(Issue::find($id)->start_date) and time() <= strtotime(Issue::find($id)->end_date)) {
+            return view('issue.upload')->with([
+                'issue' => Issue::find($id),
+                'uploads' => Upload::where('user_id', '=', Session::get('user')->id)->where('issue_id', '=', $id)->get(),
+            ]);
+        }else {
+            return abort(404);
+        }
+        
     }
 
     public function showBatchAddUserPage() {
