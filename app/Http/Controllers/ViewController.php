@@ -90,4 +90,10 @@ class ViewController extends Controller {
     public function showProfilePage() {
         return view('user.profile');
     }
+
+    public function showEditIssuePage($id) {
+        return view('issue.edit')->with([
+            'issue' => Issue::find($id)
+        ]);
+    }
 }

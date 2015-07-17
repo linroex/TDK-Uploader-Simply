@@ -23,7 +23,7 @@ class IssueController extends Controller {
 
         Issue::create([
             'name' => $request->get('issue-name'),
-            'slug' => str_replace(' ', '-', $request->get('issue-slug')),
+            'slug' => $request->get('issue-slug'),
             'content' => str_replace("\n", '<br />', $request->get('issue-text')),
             'start_date' => $request->get('issue-start'),
             'end_date' => $request->get('issue-end'),
@@ -31,7 +31,26 @@ class IssueController extends Controller {
             'upload_count' => 0
         ]);
 
-        return redirect('/admin/issue/list');
+        return redirect('admin/issue/list');
+    }
+
+    public function editIssue(Request $request) {
+        $this->validate($request, [
+            'issue-name' => 'required',
+            'issue-text' => 'required',
+            'issue-start' => 'required|date',
+            'issue-end' => "required|date|after:{$request->get('issue-start')}"
+        ]);
+
+        Issue::find($request->id)->update([
+            'name' => $request->get('issue-name'),
+            'content' => str_replace("\n", '<br />', $request->get('issue-text')),
+            'start_date' => $request->get('issue-start'),
+            'end_date' => $request->get('issue-end'),
+            'user_id' => Session::get('user')->id,
+        ]);
+
+        return redirect()->back()->with('message', '修改成功');
     }
 
     public function upload(Request $request) {
