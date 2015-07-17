@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/test', function() {
-
-});
-
 Route::get('/', 'ViewController@showIndex');
 
 Route::get('/login', 'ViewController@showLoginPage');
@@ -35,16 +31,21 @@ Route::group(['prefix' => '/admin', 'middleware' => 'checkAdmin'], function() {
         Route::get('/batch', 'ViewController@showBatchAddUserPage');
         Route::post('/batch', 'UserController@batchAddUser');
     });
+    
 });
 
 Route::group(['middleware' => 'checkUser'], function() {
     Route::get('/file/{file_id}', 'IssueController@download');
+    Route::get('/profile', 'ViewController@showProfilePage');
+
     Route::group(['prefix' => 'issue'], function() {
         Route::get('/list', 'ViewController@showIssueListUserPage');
         Route::get('/{id}', 'ViewController@showIssueUploadUserPage');
 
         Route::get('/{issue_id}/{file}/delete', 'IssueController@delete');
         Route::post('/{id}/upload', 'IssueController@upload');
+
+
     });    
 });
 

@@ -86,4 +86,8 @@ class ViewController extends Controller {
     public function showBatchAddUserPage() {
         return view('user.batch');
     }
+
+    public function showProfilePage() {
+        return view('user.profile');
+    }
 }
