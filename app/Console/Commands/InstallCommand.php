@@ -67,7 +67,8 @@ class InstallCommand extends Command {
 			'password' => Hash::make($password),
 			'mobile' => $mobile,
 			'leader_name' => $name,
-			'type' => 'admin'
+			'type' => 'admin',
+			'team_name' => '管理團隊'
 		]);
 	}
 
