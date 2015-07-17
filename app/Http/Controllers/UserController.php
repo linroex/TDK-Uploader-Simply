@@ -68,4 +68,24 @@ class UserController extends Controller {
 		return redirect()->back();
 		
 	}
+
+	public function editPassword(Request $request) {
+		$this->validate($request, [
+			'old_password' => 'required',
+			'password' => 'required|confirmed',
+			'password_confirmation' => 'required'
+		]);
+
+		if(Hash::check($request->old_password, User::find(Session::get('user')->id)->password)) {
+			User::find(Session::get('user')->id)->update([
+				'password' => Hash::make($request->password)
+			]);
+
+			return redirect()->back()->with('message', '密碼修改成功');
+		}else {
+			return redirect()->back()->withErrors('Old password is wrong');
+		}
+
+		
+	}
 }

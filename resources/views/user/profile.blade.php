@@ -6,7 +6,7 @@
 <body>
     @include('components.section-header')
     @include('components.nav')
-
+    
     <div class="view-container">
         <section id="content">
             <section class="page">
@@ -17,9 +17,11 @@
                                 <strong>修改密碼</strong>
                             </div>
                             <div class="panel-body">
+                                @include('components.notifier')
+                                
                                 <form action="{{url('profile')}}" method="post" class="form-horizontal">
                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    
+
                                     <div class="form-group">
                                         <label for="old_password" class="col-md-3 control-label">舊密碼</label>
                                         <div class="col-md-9">
