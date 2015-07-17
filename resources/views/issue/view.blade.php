@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     @include('components.header', ['title' => '檢視任務'])
+    <script>
+        $(document).ready(function() {
+            $('table').tablesorter();
+        });
+    </script>
 </head>
 <body>
     @include('components.section-header')
@@ -51,12 +56,12 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <td>隊伍編號</td>
-                                            <td>姓名</td>
-                                            <td>手機</td>
-                                            <td>信箱</td>
-                                            <td>最後上傳</td>
-                                            <td>檔案數</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 隊伍編號</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 姓名</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 手機</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 信箱</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 最後上傳</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 檔案數</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,10 +89,10 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <td>隊伍編號</td>
-                                            <td>姓名</td>
-                                            <td>手機</td>
-                                            <td>信箱</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 隊伍編號</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 姓名</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 手機</td>
+                                            <td><i class="glyphicon glyphicon-resize-vertical"></i> 信箱</td>
                                         </tr>
                                     </thead>
                                     <tbody>

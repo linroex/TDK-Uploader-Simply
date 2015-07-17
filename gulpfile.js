@@ -23,7 +23,8 @@ elixir(function(mix) {
     mix.scripts([
         "jquery-2.1.4.js",
         "bootstrap.js",
-        "jquery-ui.js"
+        "jquery-ui.js",
+        "jquery.tablesorter.min.js"
 
     ]);
 
