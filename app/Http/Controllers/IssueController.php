@@ -75,17 +75,20 @@ class IssueController extends Controller {
         if(Issue::find($issue_id)) {
             $file = 'uploads/' . Session::get('user')->team_id . '/' . $issue_id . '/' . $file;
             
-            Storage::delete($file);
+            if(Storage::delete($file)) {
+                Upload::where('path', '=', storage_path('app/' . $file))
+                      ->where('user_id', '=', Session::get('user')->id)
+                      ->delete();
+
+                Issue::find($issue_id)->update([
+                    'upload_count' => Upload::where('issue_id', '=', $issue_id)->groupBy('user_id')->get()->count()
+                ]);
+
+                return redirect()->back();    
+            }else {
+                return abort(404);    
+            }
             
-            Upload::where('path', '=', storage_path('app/' . $file))
-                  ->where('user_id', '=', Session::get('user')->id)
-                  ->delete();
-
-            Issue::find($issue_id)->update([
-                'upload_count' => Upload::where('issue_id', '=', $issue_id)->groupBy('user_id')->get()->count()
-            ]);
-
-            return redirect()->back();    
         }else {
             return abort(404);
         }
