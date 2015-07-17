@@ -92,12 +92,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach($not_upload as $item)
-                                        <tr>
-                                            <td>{{$item->team_id}}</td>
-                                            <td>{{$item->leader_name}}</td>
-                                            <td>{{$item->mobile}}</td>
-                                            <td>{{$item->email}}</td>
-                                        </tr>
+                                            @if($item->type !== 'admin')
+                                            <tr>
+                                                <td>{{$item->team_id}}</td>
+                                                <td>{{$item->leader_name}}</td>
+                                                <td>{{$item->mobile}}</td>
+                                                <td>{{$item->email}}</td>
+                                            </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
