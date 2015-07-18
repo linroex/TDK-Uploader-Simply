@@ -7,9 +7,30 @@
         $(target).click();
     }
 
+    function uploadIncrease() {
+        var template = $("#upload-item-template table tbody");
+        var current = $('form#upload-form tr input:file').length + 1;
+        $(template).find("td").eq(0).text("檔案 " + current);
+        $(template).find("a.btn.btn-success").attr('onclick', 'openFileDialog("#file' + current + '")');
+        $(template).find("input:file").attr('id', 'file' + current);
+
+        $('form#upload-form tr').eq(-2).after($(template).html());
+    }
+
+    function uploadDecrease() {
+        $('form#upload-form tr').eq(-2).remove()
+    }
+
     $(document).ready(function() {
-        $('input:file').change(function(){
+        $("form#upload-form").on("change", "input:file", function() {
             $(this).parent().children(".input-group").children("input:text").val($(this).val());
+        })
+
+        $('a#upload-incr').click(function() {
+            uploadIncrease();
+        });
+        $('a#upload-decr').click(function() {
+            uploadDecrease();
         });
     });
     </script>
@@ -108,7 +129,7 @@
                                         </ol>
                                     </div>
                                     @include('components.notifier')
-                                    <form action="{{url('issue/' . $issue->id . '/upload')}}" method="post" enctype="multipart/form-data">
+                                    <form id="upload-form" action="{{url('issue/' . $issue->id . '/upload')}}" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <input type="hidden" name="issue_id" value="{{$issue->id}}">
                                         <table class="table">
@@ -149,9 +170,17 @@
                                                     <input type="file" name="file[]" id="file3" class="hidden">
                                                 </td>
                                             </tr>
+
                                             <tr>
-                                                <td></td>
-                                                <td><input type="submit" value="上傳" class="btn btn-primary pull-right"></td>
+                                                <td colspan="2" class="col-md-12">
+                                                    <div class="btn-group">
+                                                        <a id="upload-incr" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+                                                        <a id="upload-decr" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i></a>
+                                                    </div>
+
+                                                    <input type="submit" value="上傳" class="btn btn-primary pull-right">
+                                                </td>
+                                                
                                             </tr>
                                         </table>
                                     </form>
@@ -170,5 +199,24 @@
         </section>
     </div>
     {{-- View container end --}}
+    <div class="hidden" id="upload-item-template">
+        <table>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success" onclick="openFileDialog('#')">選擇</a>
+                            </span>
+                        </div>
+                        <input type="file" name="file[]" class="hidden">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>  
+    
 </body>
 </html>
