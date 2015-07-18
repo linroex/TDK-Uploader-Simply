@@ -40,6 +40,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="issue-upload-num" class="col-sm-2">預計檔案數</label>
+                                <div class="col-sm-10">
+                                    <input id="issue-upload-num" name="issue-upload-num" type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="issue-text" class="col-sm-2">任務說明</label>
                                 <div class="col-sm-10">
                                     <textarea name="issue-text" id="issue-text" rows="10" class="form-control"></textarea>
