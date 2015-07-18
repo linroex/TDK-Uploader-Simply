@@ -44,6 +44,7 @@
                                         <td>未上傳使用者數</td>
                                         <td>{{$not_upload->count()}}</td>
                                     </tr>
+
                                 </table>
                             </div>
                         </div>
@@ -62,6 +63,7 @@
                                             <td><i class="glyphicon glyphicon-resize-vertical"></i> 信箱</td>
                                             <td><i class="glyphicon glyphicon-resize-vertical"></i> 最後上傳</td>
                                             <td><i class="glyphicon glyphicon-resize-vertical"></i> 檔案數</td>
+                                            <td>預計檔案數</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,6 +76,7 @@
                                             <td>{{$upload->user->email}}</td>
                                             <td>{{$upload->updated_at}}</td>
                                             <td>{{$upload->count}}</td>
+                                            <td>{{$issue->estimate_upload_num}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

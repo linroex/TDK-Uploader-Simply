@@ -65,6 +65,10 @@
                                                 <td>截止日期</td>
                                                 <td>{{$issue->end_date}}</td>
                                             </tr>
+                                            <tr>
+                                                <td>預計檔案數</td>
+                                                <td>{{$issue->estimate_upload_num}}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
