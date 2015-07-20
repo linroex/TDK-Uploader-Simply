@@ -20,16 +20,12 @@
                 <div class="singin-body">
                     <div class="container">
                         <div class="form-container">
-                            <p>請輸入帳號密碼登入頁面上傳檔案，本站提供給每組參賽隊伍一組帳號與密碼，預設帳號為隊伍資料表中「隊員一」之Email帳號，預設密碼為「隊員一」之身分證字號（英文字母為小寫）。</p>
-
-                            <p>預設帳號查詢（<a href="http://tdk.ntust.edu.tw/wp-content/uploads/2015/01/資料上傳平台 預設帳號名冊.pdf" target="_blank">http://tdk.ntust.edu.tw/wp-content/uploads/2015/01/資料上傳平台 預設帳號名冊.pdf</a>）</p>
-
-                            <p>使用平台如有任何問題，請洽台科大TDK辦公室莊喻淇助理。</p>
-                            <ul>
-                                <li>02-27376906</li>
-                                <li>tdk@mail.ntust.edu.tw</li>
-                            </ul>
-                            <br>
+                            <p>請輸入帳號密碼登入平台上傳檔案，本站提供給每組參賽隊伍一組帳號與密碼，預設帳號為隊伍資料表中「隊員一」之Email帳號，預設密碼為「隊員一」之身分證字號（英文字母為小寫）。</p>
+                            <p>※ 預設帳號查詢（<a href="http://tdk.ntust.edu.tw/wp-content/uploads/2015/01/account.pdf" target="_blank">http://tdk.ntust.edu.tw/wp-content/uploads/2015/01/account.pdf</a>）</p>
+                            <p>※ 使用IE瀏覽器者，若因相容性問題導致無法登入平台，請改用chrome或firefox瀏覽器。</p>
+                            <p>※ 使用平台如有任何問題，請洽台科大TDK辦公室莊喻淇助理。</p>
+                            <p>02-27376906</p>
+                            <p><a href="mailto:tdk@mail.ntust.edu.tw">tdk@mail.ntust.edu.tw</a></p>
                             
                             @include('components.notifier')
                             <form action="{{url('/login')}}" method="post" class="form-horizontal">
