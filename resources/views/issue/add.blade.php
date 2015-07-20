@@ -68,6 +68,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="issue-delay" class="col-sm-2">允許延遲</label>
+                                <div class="col-sm-10">
+                                     <input id="issue-delay" name="issue-delay" type="checkbox" value="true">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <input type="submit" value="新增" class="btn btn-primary">
                                 </div>

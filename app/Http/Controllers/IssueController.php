@@ -19,7 +19,7 @@ class IssueController extends Controller {
             'issue-text' => 'required',
             'issue-start' => 'required|date',
             'issue-end' => "required|date|after:{$request->get('issue-start')}",
-            'issue-upload-num' => 'required|numeric'
+            'issue-upload-num' => 'required|numeric',
         ]);
 
         Issue::create([
@@ -30,7 +30,8 @@ class IssueController extends Controller {
             'end_date' => $request->get('issue-end'),
             'user_id' => Session::get('user')->id,
             'upload_count' => 0,
-            'estimate_upload_num' => $request->get('issue-upload-num')
+            'estimate_upload_num' => $request->get('issue-upload-num'),
+            'delay' => (is_null($request->get('issue-delay'))?false:true)
         ]);
 
         return redirect('admin/issue/list');
@@ -51,7 +52,8 @@ class IssueController extends Controller {
             'start_date' => $request->get('issue-start'),
             'end_date' => $request->get('issue-end'),
             'user_id' => Session::get('user')->id,
-            'estimate_upload_num' => $request->get('issue-upload-num')
+            'estimate_upload_num' => $request->get('issue-upload-num'),
+            'delay' => (is_null($request->get('issue-delay'))?false:true)
         ]);
 
         return redirect()->back()->with('message', '修改成功');
