@@ -44,6 +44,10 @@
                                         <td>未上傳使用者數</td>
                                         <td>{{$not_upload->count()}}</td>
                                     </tr>
+                                    <tr>
+                                        <td>允許遲交</td>
+                                        <td>{{$issue->delay?"是":"否"}}</td>
+                                    </tr>
 
                                 </table>
                             </div>

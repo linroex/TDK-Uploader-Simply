@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="issue-delay" class="col-sm-2">允許延遲</label>
+                                <label for="issue-delay" class="col-sm-2">允許遲交</label>
                                 <div class="col-sm-10">
                                      <input id="issue-delay" name="issue-delay" type="checkbox"  value="true" {{$issue->delay?"checked":""}}>
                                 </div>
