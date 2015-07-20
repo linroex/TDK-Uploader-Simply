@@ -15,26 +15,29 @@ class ViewController extends Controller {
     public function showIndex() {
         if(Session::has('user')) {
             if(Session::get('user')->type === 'admin') {
-
-                $users = User::where('type', '=', 'user')->get();
-                $issues = Issue::all();
-                $uploads_count = [];
-
-                foreach($users as $user) {
-                    $uploads_count[$user->team_id] = Upload::where('user_id', '=', $user->id)->groupBy('issue_id')->get()->keyBy('issue_id')->toArray();
-                }
-                
-                return view('dashboard')->with([
-                    'users' => $users,
-                    'issues' => $issues,
-                    'uploads' => $uploads_count
-                ]);
+                return $this->showAdminDashboard();
             }else if(Session::get('user')->type === 'user') {
                 return $this->showIssueListUserPage();
             }
         }else {
             return redirect('/login');
         }
+    }
+
+    public function showAdminDashboard() {
+        $users = User::where('type', '=', 'user')->get();
+        $issues = Issue::all();
+        $uploads_count = [];
+
+        foreach($users as $user) {
+            $uploads_count[$user->team_id] = Upload::where('user_id', '=', $user->id)->groupBy('issue_id')->get()->keyBy('issue_id')->toArray();
+        }
+        
+        return view('dashboard')->with([
+            'users' => $users,
+            'issues' => $issues,
+            'uploads' => $uploads_count
+        ]);
     }
 
     public function showLoginPage() {
@@ -93,7 +96,7 @@ class ViewController extends Controller {
                 ]);
             }
         }
-        
+
         return abort(404);
     }
 

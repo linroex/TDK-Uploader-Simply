@@ -18,9 +18,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td></td>
+                                    <td class="col-sm-1"></td>
                                     @foreach($issues as $issue)
-                                    <td>{{$issue->name}}</td>
+                                    <td>
+                                        {{$issue->name}}
+                                        <br>
+                                        {{$issue->end_date}}
+                                    </td>
                                     @endforeach
                                 </tr>
                             </thead>
@@ -33,6 +37,7 @@
                                         應上傳：{{$issue->estimate_upload_num}} <br>
                                         已上傳：{{array_key_exists($issue->id, $uploads[$user->team_id])?$uploads[$user->team_id][$issue->id]['count']:0}}
                                     </td>
+
                                     @endforeach
                                 </tr>
                                 @endforeach
