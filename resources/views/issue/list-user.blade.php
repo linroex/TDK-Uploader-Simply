@@ -42,33 +42,37 @@
 
                 <div class="row">
                     @foreach($issues as $issue)
-                        @if(time() >= strtotime($issue['start_date']) and time() <= strtotime($issue['end_date']))
-                        <div class="col-sm-6">
-                            <div class="panel panel-profile">
-                                <div class="panel-heading text-center bg-info">
-                                    <i class="fa fa-upload"></i>
-                                    <h3>{{$issue['name']}}</h3>
-                                    <p>{!!$issue['content']!!}</p>
-                                </div>
+                        
+                        @if(time() >= strtotime($issue['start_date']))
 
-                                <div class="list-justified-container">
-                                    <ul class="list-justified text-center">
-                                        <li>
-                                            <p class="size-h3">{{$issue['end_date']}}</p>
-                                            <p class="text-muted">截止日期</p>
-                                        </li>
-                                        <li>
-                                            <p class="size-h3">{{$issue['count']}}</p>
-                                            <p class="text-muted">已上傳檔案數</p>
-                                        </li>
-                                        <li>
-                                            <a href="{{url('/issue/' . $issue['id'])}}" class="btn btn-lg btn-primary">詳細</a>
-                                        </li>
-                                    </ul>
+                            @if(time() <= strtotime($issue['end_date']) or $issue['delay'])
+                            <div class="col-sm-6">
+                                <div class="panel panel-profile">
+                                    <div class="panel-heading text-center bg-info">
+                                        <i class="fa fa-upload"></i>
+                                        <h3>{{$issue['name']}}</h3>
+                                        <p>{!!$issue['content']!!}</p>
+                                    </div>
+
+                                    <div class="list-justified-container">
+                                        <ul class="list-justified text-center">
+                                            <li>
+                                                <p class="size-h3">{{$issue['end_date']}}</p>
+                                                <p class="text-muted">截止日期</p>
+                                            </li>
+                                            <li>
+                                                <p class="size-h3">{{$issue['count']}}</p>
+                                                <p class="text-muted">已上傳檔案數</p>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('/issue/' . $issue['id'])}}" class="btn btn-lg btn-primary">詳細</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                {{-- Panel end --}}
                             </div>
-                            {{-- Panel end --}}
-                        </div>
+                            @endif
                         @endif
                     @endforeach
                 </div>

@@ -72,7 +72,7 @@ class ViewController extends Controller {
     }
 
     public function showIssueListUserPage() {
-        $issues = Issue::where('start_date', '<=', date('Y-m-d'))->where('end_date', '>=', date('Y-m-d'))->get()->toArray();
+        $issues = Issue::all()->toArray();
 
         $i = 0;
         for($i = 0; $i < count($issues); $i++) {
@@ -85,15 +85,16 @@ class ViewController extends Controller {
     }
 
     public function showIssueUploadUserPage($id) {
-        if(time() >= strtotime(Issue::find($id)->start_date) and time() <= strtotime(Issue::find($id)->end_date)) {
-            return view('issue.upload')->with([
-                'issue' => Issue::find($id),
-                'uploads' => Upload::where('user_id', '=', Session::get('user')->id)->where('issue_id', '=', $id)->get(),
-            ]);
-        }else {
-            return abort(404);
+        if(time() >= strtotime(Issue::find($id)->start_date)) {
+            if(time() <= strtotime(Issue::find($id)->end_date) or Issue::find($id)->delay) {
+                return view('issue.upload')->with([
+                    'issue' => Issue::find($id),
+                    'uploads' => Upload::where('user_id', '=', Session::get('user')->id)->where('issue_id', '=', $id)->get(),
+                ]);
+            }
         }
         
+        return abort(404);
     }
 
     public function showBatchAddUserPage() {
