@@ -21,7 +21,7 @@ class CreateIssuesTable extends Migration {
 			$table->date('end_date');
 			$table->integer('user_id')->unsigned();
 			$table->integer('upload_count');
-			$table->timestamps();
+			$table->nullableTimestamps();
 
 			$table->foreign('user_id')->references('id')->on('users');
 		});

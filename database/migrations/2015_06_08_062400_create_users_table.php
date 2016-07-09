@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration {
 			$table->string('mobile', 12);
 			$table->string('school', 40)->nullable();
 			$table->enum('type', ['user', 'admin']);
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

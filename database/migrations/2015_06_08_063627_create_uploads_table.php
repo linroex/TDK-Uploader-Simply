@@ -18,7 +18,7 @@ class CreateUploadsTable extends Migration {
 			$table->integer('user_id')->unsigned();
 			$table->integer('issue_id')->unsigned();
 			$table->text('path');
-			$table->timestamps();
+			$table->nullableTimestamps();
 
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('issue_id')->references('id')->on('issues');
