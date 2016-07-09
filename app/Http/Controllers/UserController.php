@@ -18,6 +18,10 @@ class UserController extends Controller {
 
 		$user = User::where('email', '=', $request->get('email'))->first();
 
+		if($user->type == 'user' && env('APP_USER_LOGIN') == false){
+			return redirect('/login')->withErrors('禁止登入，請聯絡管理員');
+		}
+
 		if(Hash::check($request->get('password'), $user->password)) {
 			Session::put('user', $user);
 			return redirect('/');
