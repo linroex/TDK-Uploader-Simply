@@ -54,7 +54,7 @@ class UserController extends Controller {
 				'email' => trim($columns[5]),
 				'team_id' => trim($columns[0]),
 				'password' => Hash::make(strtolower(trim($columns[6]))),
-				'team_name' => trim($columns[3]),
+				'team_name' => trim($columns[1]),
 				'leader_name' => trim($columns[3]),
 				'mobile' => str_replace('-', '', trim($columns[4])),
 				'school' => trim($columns[2]),
