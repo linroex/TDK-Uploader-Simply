@@ -73,6 +73,15 @@ class IssueController extends Controller {
 
         if(time() >= strtotime(Issue::find($request->issue_id)->start_date)) {
             if(time() <= strtotime(Issue::find($request->issue_id)->end_date) or Issue::find($request->issue_id)->delay) {
+
+                // delete old all files
+                Storage::deleteDirectory('uploads/' . Session::get('user')->team_id . '/' . $request->issue_id);
+                Upload::where('user_id','=',Session::get('user')->id)->where('issue_id', '=', $request->issue_id)->delete();
+                
+                Issue::find($request->issue_id)->update([
+                    'upload_count' => 0
+                ]);
+
                 foreach($request->file('file') as $file) {
                     if($file !== null) {
                         if($file->isValid()) {
