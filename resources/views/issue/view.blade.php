@@ -80,7 +80,7 @@
                                             <td>{{$upload->user->email}}</td>
                                             <td>{{$upload->updated_at}}</td>
                                             <td>{{$upload->count}}</td>
-                                            <td>{{$issue->estimate_upload_num}}</td>
+                                            <td>{{$issue->detail->count()}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

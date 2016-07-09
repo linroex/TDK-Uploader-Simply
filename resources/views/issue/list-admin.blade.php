@@ -39,7 +39,7 @@
                                         <td>{{$issue->start_date}}</td>
                                         <td>{{$issue->end_date}}</td>
                                         <td>{{$issue->upload_count}}</td>
-                                        <td>{{$issue->estimate_upload_num}}</td>
+                                        <td>{{$issue->detail->count()}}</td>
                                         <td class="text-center"><a href="{{url('/admin/issue/' . $issue->id)}}" class="btn btn-primary">檢視</a></td>
                                         <td class="text-center"><a href="{{url('/admin/issue/edit/' . $issue->id)}}" class="btn btn-default">編輯</a></td>
                                     </tr>
