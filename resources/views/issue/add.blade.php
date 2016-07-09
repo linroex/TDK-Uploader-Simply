@@ -7,7 +7,33 @@
         $(document).ready(function(){
             $("#issue-start").datepicker();
             $("#issue-end").datepicker();
+
+            $('a#file-incr').click(function() {
+                uploadIncrease();
+            });
+            $('a#file-decr').click(function() {
+                uploadDecrease();
+            });
         });
+
+        function uploadIncrease() {
+            var template = $("#create_issue_form #file1").parent().parent().clone();
+            var current = $('form#create_issue_form input[name="file[]"]').length + 1;
+            
+            template.find("label").text("檔案 " + current);
+            template.find("label").attr("for", "file" + current);
+            template.find("input:text").attr('id', 'file' + current);
+
+            $('form#create_issue_form .form-group').eq(-2).after('<div class="form-group">' + template.html() + '</div>');
+        }
+
+        function uploadDecrease() {
+            if($('form#create_issue_form input[name="file[]"]').length > 1){
+                $('form#create_issue_form .form-group').eq(-2).remove();    
+            }
+            
+        }
+
     </script>
 </head>
 <body>
@@ -23,7 +49,7 @@
                     </div>
                     <div class="panel-body">
                         @include('components.notifier')
-                        <form action="{{url('admin/issue/add')}}" method="post" class="form-horizontal">
+                        <form action="{{url('admin/issue/add')}}" method="post" class="form-horizontal" id="create_issue_form">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label for="issue-name" class="col-sm-2">任務名稱</label>
@@ -36,13 +62,6 @@
                                 <label for="issue-slug" class="col-sm-2">任務代稱</label>
                                 <div class="col-sm-10">
                                     <input id="issue-slug" name="issue-slug" type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="issue-upload-num" class="col-sm-2">預計檔案數</label>
-                                <div class="col-sm-10">
-                                    <input id="issue-upload-num" name="issue-upload-num" type="text" class="form-control">
                                 </div>
                             </div>
 
@@ -75,11 +94,26 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="file1" class="col-sm-2">檔案1</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="file[]" id="file1" class="form-control">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <input type="submit" value="新增" class="btn btn-primary">
                                 </div>
                             </div>
                         </form>
+
+                        <div class="btn-group">
+                            <a id="file-incr" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+                            <a id="file-decr" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i></a>
+                        </div>
+
                     </div>
                 </section>
             </section>
