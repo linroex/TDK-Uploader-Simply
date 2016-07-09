@@ -32,7 +32,6 @@ class UserController extends Controller {
 	}
 
 	public function batchAddUser(Request $request) {
-
 		$data = explode("\n", $request->get('data'));
 		foreach($data as $row) {
 			$columns = explode(",", $row);
@@ -52,13 +51,13 @@ class UserController extends Controller {
 			// ]);
 
 			User::create([
-				'email' => trim($columns[9]),
+				'email' => trim($columns[5]),
 				'team_id' => trim($columns[0]),
-				'password' => Hash::make(strtolower(trim($columns[10]))),
-				'team_name' => trim($columns[1]),
+				'password' => Hash::make(strtolower(trim($columns[6]))),
+				'team_name' => trim($columns[3]),
 				'leader_name' => trim($columns[3]),
-				'mobile' => str_replace('-', '', trim($columns[8])),
-				'school' => trim($columns[5]),
+				'mobile' => str_replace('-', '', trim($columns[4])),
+				'school' => trim($columns[2]),
 				'type' => 'user'
 			]);
 			
