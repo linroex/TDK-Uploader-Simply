@@ -3,10 +3,12 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Issue;
+use App\IssueDetail;
 use App\Upload;
 
 use Illuminate\Http\Request;
 
+use DB;
 use Session;
 use Storage;
 use Response;
@@ -18,21 +20,28 @@ class IssueController extends Controller {
             'issue-slug' => 'required|unique:issues,slug',
             'issue-text' => 'required',
             'issue-start' => 'required|date',
-            'issue-end' => "required|date|after:{$request->get('issue-start')}",
-            'issue-upload-num' => 'required|numeric',
+            'issue-end' => "required|date|after:{$request->get('issue-start')}"
         ]);
 
-        Issue::create([
-            'name' => $request->get('issue-name'),
-            'slug' => $request->get('issue-slug'),
-            'content' => str_replace("\n", '<br />', $request->get('issue-text')),
-            'start_date' => $request->get('issue-start'),
-            'end_date' => $request->get('issue-end'),
-            'user_id' => Session::get('user')->id,
-            'upload_count' => 0,
-            'estimate_upload_num' => $request->get('issue-upload-num'),
-            'delay' => (is_null($request->get('issue-delay'))?false:true)
-        ]);
+        DB::transaction(function() use ($request) {
+            $issue = Issue::create([
+                'name' => $request->get('issue-name'),
+                'slug' => $request->get('issue-slug'),
+                'content' => str_replace("\n", '<br />', $request->get('issue-text')),
+                'start_date' => $request->get('issue-start'),
+                'end_date' => $request->get('issue-end'),
+                'user_id' => Session::get('user')->id,
+                'upload_count' => 0,
+                'delay' => (is_null($request->get('issue-delay'))?false:true)
+            ]);
+
+            foreach ($request->get('file') as $file) {
+                IssueDetail::create([
+                    'issue_id' => $issue->id,
+                    'desc' => $file
+                ]);
+            }
+        });
 
         return redirect('admin/issue/list');
     }
@@ -42,8 +51,7 @@ class IssueController extends Controller {
             'issue-name' => 'required',
             'issue-text' => 'required',
             'issue-start' => 'required|date',
-            'issue-end' => "required|date|after:{$request->get('issue-start')}",
-            'issue-upload-num' => 'required|numeric'
+            'issue-end' => "required|date|after:{$request->get('issue-start')}"
         ]);
 
         Issue::find($request->id)->update([
@@ -52,7 +60,6 @@ class IssueController extends Controller {
             'start_date' => $request->get('issue-start'),
             'end_date' => $request->get('issue-end'),
             'user_id' => Session::get('user')->id,
-            'estimate_upload_num' => $request->get('issue-upload-num'),
             'delay' => (is_null($request->get('issue-delay'))?false:true)
         ]);
 
