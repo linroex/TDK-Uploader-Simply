@@ -3,7 +3,7 @@
         <div class="logo bg-primary">
             <a href="{{url('/')}}">
                 <span class="glyphicon glyphicon-fire logo-icon"></span>
-                <span>TDK 19</span>
+                <span>TDK 20</span>
             </a>
         </div>
 
@@ -13,7 +13,7 @@
             <span class="icon-bar"></span>
         </div>
 
-        <div class="top-nav">
+        <div class="top-nav"> 
             <div class="navbar-nav nav pull-right">
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">
