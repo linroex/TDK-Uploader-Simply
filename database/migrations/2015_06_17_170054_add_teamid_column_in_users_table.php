@@ -13,7 +13,7 @@ class AddTeamidColumnInUsersTable extends Migration {
 	public function up()
 	{
 		Schema::table('users', function($table) {
-			$table->char('team_id', 3)->after('id');
+			$table->char('team_id', 3)->after('id')->nullable();
 		});
 	}
 
