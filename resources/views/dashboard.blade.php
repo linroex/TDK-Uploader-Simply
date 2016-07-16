@@ -34,7 +34,7 @@
                                     <td>{{$user->team_id}}</td>
                                     @foreach($issues as $issue)
                                     <td>
-                                        應上傳：{{$issue->estimate_upload_num}} <br>
+                                        應上傳：{{$issue->detail->count()}}<br>
                                         已上傳：{{array_key_exists($issue->id, $uploads[$user->team_id])?$uploads[$user->team_id][$issue->id]['count']:0}}
                                     </td>
 
